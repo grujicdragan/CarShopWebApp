@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 1, 2019 9:18:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="main.Order" table="order" catalog="car_shop" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="car" class="main.Car" fetch="select">
+            <column name="car_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="main.User" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="price" type="java.lang.Float">
+            <column name="price" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

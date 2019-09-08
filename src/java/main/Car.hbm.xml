@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 1, 2019 9:18:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="main.Car" table="car" catalog="car_shop" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="color" class="main.Color" fetch="select">
+            <column name="color_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="levelOfEquipment" class="main.LevelOfEquipment" fetch="select">
+            <column name="level_of_equipment_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="location" class="main.Location" fetch="select">
+            <column name="location_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="model" class="main.Model" fetch="select">
+            <column name="model_id" not-null="true" />
+        </many-to-one>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="car_id" not-null="true" />
+            </key>
+            <one-to-many class="main.Order" />
+        </set>
+    </class>
+</hibernate-mapping>
