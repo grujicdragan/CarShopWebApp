@@ -5,17 +5,15 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javafx.scene.control.Alert;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.registry.LifeCycleManager;
 
 /**
  *
- * @author Dusan
+ * @author Dragan
  */
 @WebServlet(name = "Signup", urlPatterns = {"/signup"})
 public class Signup extends HttpServlet {

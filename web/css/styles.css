@@ -10,7 +10,7 @@
   z-index: 1;
   background: #FFFFFF;
   max-width: 360px;
-  margin: 0 auto 500px;
+  margin: 0 auto 350px;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -26,6 +26,7 @@
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: .5em;
 }
 .form button {
   font-family: "Roboto", sans-serif;
@@ -49,10 +50,10 @@
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
-  font-size: 12px;
+  font-size: 14px;
 }
 .form .message a {
-  color: #4CAF50;
+  color: #6997FF;
   text-decoration: none;
 }
 .form .register-form {
@@ -110,8 +111,6 @@ font-family: "Roboto", sans-serif;
 }
 .select-css option {
     font-weight:normal;
-    background-color: #adadad;
-    
+    background-color: #adadad; 
 }
-
 

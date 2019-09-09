@@ -6,6 +6,7 @@
 package main;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Dusan
+ * @author Dragan
  */
 @WebServlet(name = "LoginVerification", urlPatterns = {"/loginverification"})
 public class LoginVerification extends HttpServlet {
@@ -30,17 +31,32 @@ public class LoginVerification extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
 
+    private String alert(String message) {
+        return "<script type=\"text/javascript\">alert('" + message + "')</script>";
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try (PrintWriter out = response.getWriter()) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        Boolean error = false;
 
         List<User> user = DB.query("SELECT u FROM User u WHERE u.email=? AND u.password=?",email, password);
 
-        if(user.isEmpty()){
-            response.sendRedirect("index.html");
+        if(user.isEmpty()|| password.isEmpty()){
+            out.println(this.alert("Popunite sva polja !"));
+            error = true;
         } else {
             request.getSession(true).setAttribute("user", user.get(0));
             response.sendRedirect("search.jsp");
+        }
+        
+        if(error == true) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("setTimeout(() => location.href = '/CarShopWebApplication/index.html')");
+                out.println("</script>");
+            }
+        
         }
 
     }
