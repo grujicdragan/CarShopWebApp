@@ -26,14 +26,14 @@ public class Model  implements java.io.Serializable {
     public Model(Brand brand, EngineType engineType, float price) {
         this.brand = brand;
         this.engineType = engineType;
-        this.price = price;
+        this.price = Math.round(price);
     }
     public Model(Brand brand, EngineType engineType, String name, String year, float price, Set<Car> cars) {
        this.brand = brand;
        this.engineType = engineType;
        this.name = name;
        this.year = year;
-       this.price = price;
+       this.price = Math.round(price);
        this.cars = cars;
     }
    
@@ -73,11 +73,11 @@ public class Model  implements java.io.Serializable {
         this.year = year;
     }
     public float getPrice() {
-        return this.price;
+        return Math.round(this.price);
     }
     
     public void setPrice(float price) {
-        this.price = price;
+        this.price = Math.round(price);
     }
     public Set<Car> getCars() {
         return this.cars;

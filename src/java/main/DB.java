@@ -17,7 +17,7 @@ import org.hibernate.cfg.Configuration;
 
 /**
  *
- * @author Dusan
+ * @author Dragan
  */
 
 public class DB {
