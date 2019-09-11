@@ -14,9 +14,6 @@
         <many-to-one name="levelOfEquipment" class="main.LevelOfEquipment" fetch="select">
             <column name="level_of_equipment_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="location" class="main.Location" fetch="select">
-            <column name="location_id" not-null="true" />
-        </many-to-one>
         <many-to-one name="model" class="main.Model" fetch="select">
             <column name="model_id" not-null="true" />
         </many-to-one>

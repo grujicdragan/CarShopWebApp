@@ -17,23 +17,26 @@ public class Model  implements java.io.Serializable {
      private String name;
      private String year;
      private float price;
+     private String image;
      private Set<Car> cars = new HashSet<Car>(0);
 
     public Model() {
     }
 
 	
-    public Model(Brand brand, EngineType engineType, float price) {
+    public Model(Brand brand, EngineType engineType, float price, String image) {
         this.brand = brand;
         this.engineType = engineType;
-        this.price = Math.round(price);
+        this.price = price;
+        this.image = image;
     }
-    public Model(Brand brand, EngineType engineType, String name, String year, float price, Set<Car> cars) {
+    public Model(Brand brand, EngineType engineType, String name, String year, float price, String image, Set<Car> cars) {
        this.brand = brand;
        this.engineType = engineType;
        this.name = name;
        this.year = year;
-       this.price = Math.round(price);
+       this.price = price;
+       this.image = image;
        this.cars = cars;
     }
    
@@ -72,12 +75,13 @@ public class Model  implements java.io.Serializable {
     public void setYear(String year) {
         this.year = year;
     }
+
     public float getPrice() {
-        return Math.round(this.price);
+        return this.price;
     }
     
     public void setPrice(float price) {
-        this.price = Math.round(price);
+        this.price = price;
     }
     public Set<Car> getCars() {
         return this.cars;
@@ -87,7 +91,13 @@ public class Model  implements java.io.Serializable {
         this.cars = cars;
     }
 
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
 }

@@ -37,28 +37,26 @@ public class LoginVerification extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        Boolean error = false;
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            Boolean error = false;
 
-        List<User> user = DB.query("SELECT u FROM User u WHERE u.email=? AND u.password=?",email, password);
+            List<User> user = DB.query("SELECT u FROM User u WHERE u.email=? AND u.password=?",email, password);
 
-        if(user.isEmpty()|| password.isEmpty()){
-            out.println(this.alert("Popunite sva polja !"));
-            error = true;
-        } else {
-            request.getSession(true).setAttribute("user", user.get(0));
-            response.sendRedirect("search.jsp");
-        }
-        
-        if(error == true) {
+            if(user.isEmpty()|| password.isEmpty()){
+                out.println(this.alert("Popunite sva polja !"));
+                error = true;
+            } else {
+                request.getSession(true).setAttribute("user", user.get(0));
+                response.sendRedirect("search.jsp");
+            }
+
+            if(error == true) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("setTimeout(() => location.href = '/CarShopWebApplication/index.html')");
                 out.println("</script>");
             }
-        
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

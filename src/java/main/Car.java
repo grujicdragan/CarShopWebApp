@@ -14,7 +14,6 @@ public class Car  implements java.io.Serializable {
      private Integer id;
      private Color color;
      private LevelOfEquipment levelOfEquipment;
-     private Location location;
      private Model model;
      private Set<Order> orders = new HashSet<Order>(0);
 
@@ -22,16 +21,14 @@ public class Car  implements java.io.Serializable {
     }
 
 	
-    public Car(Color color, LevelOfEquipment levelOfEquipment, Location location, Model model) {
+    public Car(Color color, LevelOfEquipment levelOfEquipment, Model model) {
         this.color = color;
         this.levelOfEquipment = levelOfEquipment;
-        this.location = location;
         this.model = model;
     }
-    public Car(Color color, LevelOfEquipment levelOfEquipment, Location location, Model model, Set<Order> orders) {
+    public Car(Color color, LevelOfEquipment levelOfEquipment, Model model, Set<Order> orders) {
        this.color = color;
        this.levelOfEquipment = levelOfEquipment;
-       this.location = location;
        this.model = model;
        this.orders = orders;
     }
@@ -57,13 +54,7 @@ public class Car  implements java.io.Serializable {
     public void setLevelOfEquipment(LevelOfEquipment levelOfEquipment) {
         this.levelOfEquipment = levelOfEquipment;
     }
-    public Location getLocation() {
-        return this.location;
-    }
-    
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+
     public Model getModel() {
         return this.model;
     }

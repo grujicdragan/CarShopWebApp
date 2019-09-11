@@ -13,6 +13,7 @@ public class Order  implements java.io.Serializable {
      private Car car;
      private User user;
      private Float price;
+     private String status;
 
     public Order() {
     }
@@ -22,10 +23,11 @@ public class Order  implements java.io.Serializable {
         this.car = car;
         this.user = user;
     }
-    public Order(Car car, User user, Float price) {
+    public Order(Car car, User user, Float price, String status) {
        this.car = car;
        this.user = user;
        this.price = price;
+       this.status = status;
     }
    
     public Integer getId() {
@@ -55,6 +57,14 @@ public class Order  implements java.io.Serializable {
     
     public void setPrice(Float price) {
         this.price = price;
+    }
+    
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 

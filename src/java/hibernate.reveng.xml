@@ -45,7 +45,6 @@ Contributor(s):
   <table-filter match-name="car"/>
   <table-filter match-name="color"/>
   <table-filter match-name="user"/>
-  <table-filter match-name="location"/>
   <table-filter match-name="brand"/>
   <table-filter match-name="level_of_equipment"/>
   <table-filter match-name="engine_type"/>

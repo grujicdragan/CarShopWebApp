@@ -23,6 +23,9 @@
         <property name="price" type="float">
             <column name="price" precision="12" scale="0" not-null="true" />
         </property>
+        <property name="image" type="string">
+            <column name="image" length="9999" />
+        </property>
         <set name="cars" table="car" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="model_id" not-null="true" />
