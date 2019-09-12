@@ -31,8 +31,8 @@
     query += "LEFT JOIN m.brand b ";
     query += "LEFT JOIN m.engineType e ";
     query += "WHERE o.id=?";
-    List<Order> orders = DB.query(query, Integer.parseInt(orderId));
-    Iterator iter = orders.iterator();
+    List dbData = DB.query(query, Integer.parseInt(orderId));
+    Iterator iter = dbData.iterator();
     Object[] data = (Object[]) iter.next();
     Order order = (Order) data[0];
     LevelOfEquipment levelOfEquipment = (LevelOfEquipment) data[2];
@@ -57,7 +57,7 @@
         <title>Cart</title>
     </head>
     <body>
-        <form class="cart-page">
+        <form class="cart-page" action="submit" method="POST">
             <div class="form-cart">            
                 <h1>Your Order</h1>
                 <hr style="margin-bottom: 35px">
@@ -81,7 +81,8 @@
                         <div style="margin: auto; background-color: <%= color.getHex()%>; box-shadow: 0px 0px 2px black; width: 20px; height: 20px; border: 0px;"></div>
                     </div>
                     <br>
-                    <button onclick="alert('Car successfully bought!')">BUY CAR</button>
+                    <input style="visibility: hidden" name="orderId" value="<%= order.getId() %>"/>
+                    <button type="submit">BUY CAR</button>
                 </div>
             </div>
         </form>
