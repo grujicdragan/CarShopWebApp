@@ -41,14 +41,18 @@ public class LoginVerification extends HttpServlet {
             String password = request.getParameter("password");
             Boolean error = false;
 
-            List<User> user = DB.query("SELECT u FROM User u WHERE u.email=? AND u.password=?",email, password);
-
-            if(user.isEmpty()|| password.isEmpty()){
+            if(email.isEmpty()|| password.isEmpty()){
                 out.println(this.alert("Popunite sva polja !"));
                 error = true;
             } else {
-                request.getSession(true).setAttribute("user", user.get(0));
-                response.sendRedirect("search.jsp");
+                List<User> user = DB.query("SELECT u FROM User u WHERE u.email=? AND u.password=?", email, password);
+                if(user.isEmpty()){
+                    out.println(this.alert("Vas email ili password nije validan !"));
+                    error = true;
+                } else {
+                    request.getSession(true).setAttribute("user", user.get(0));
+                    response.sendRedirect("search.jsp");
+                }
             }
 
             if(error == true) {
