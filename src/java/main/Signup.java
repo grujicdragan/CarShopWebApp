@@ -58,20 +58,20 @@ public class Signup extends HttpServlet {
                     if(!user.isEmpty()) {
                         existingEmail = user.get(0).getEmail();
                         existingUsername = user.get(0).getUsername();
-                    }
-                    if (user.isEmpty()) {
+                        if (existingEmail != null && email.equals(existingEmail)) {
+                            out.println(this.alert("Korisnik sa ovim email-om postoji !"));
+                            error = true;
+                        } else if(existingUsername != null && username.equals(existingUsername)) {
+                            out.println(this.alert("Korisnik sa ovim username-om postoji !"));
+                            error = true;
+                        }  else {
+                            out.println(this.alert("Doslo je do greske !"));
+                            error = true;
+                        }
+                    } else {
                         User u = new User(username, firstname, lastname, email, password, permission, orders);
                         DB.insert(u);
                         response.sendRedirect("index.html");
-                    } else if (existingEmail != null && email.equals(existingEmail)) {
-                        out.println(this.alert("Korisnik sa ovim email-om postoji !"));
-                        error = true;
-                    } else if(existingUsername != null && username.equals(existingUsername)) {
-                        out.println(this.alert("Korisnik sa ovim username-om postoji !"));
-                        error = true;
-                    } else {
-                        out.println(this.alert("Doslo je do greske !"));
-                        error = true;
                     }
                 } else {
                     out.println(this.alert("Ne poklapaju se sifre !"));

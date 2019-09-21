@@ -23,6 +23,7 @@
         response.sendRedirect("search.jsp");
         return;
     }
+
     String query = "SELECT o, c, l, co, m, b, e FROM Order o ";
     query += "LEFT JOIN o.car c ";
     query += "LEFT JOIN c.levelOfEquipment l ";
@@ -31,8 +32,11 @@
     query += "LEFT JOIN m.brand b ";
     query += "LEFT JOIN m.engineType e ";
     query += "WHERE o.id=?";
+
     List dbData = DB.query(query, Integer.parseInt(orderId));
+
     Iterator iter = dbData.iterator();
+
     Object[] data = (Object[]) iter.next();
     Order order = (Order) data[0];
     LevelOfEquipment levelOfEquipment = (LevelOfEquipment) data[2];
@@ -40,13 +44,6 @@
     Model model = (Model) data[4];
     Brand brand = (Brand) data[5];
     EngineType engineType = (EngineType) data[6];
-
-    request.setAttribute("order", order);
-    request.setAttribute("levelOfEquipment", levelOfEquipment);
-    request.setAttribute("color", color);
-    request.setAttribute("model", model);
-    request.setAttribute("brand", brand);
-    request.setAttribute("engineType", engineType);
 %>
 
 <!DOCTYPE html>
@@ -58,12 +55,20 @@
     </head>
     <body>
         <form class="cart-page" action="submit" method="POST">
-            <div class="form-cart">            
-                <h1>Your Order</h1>
+            <div class="form-cart">                         
+                <h1 style="display: inline-block; margin-right: 185px">Your Order</h1>
+                <button style="float: left; width: 190px; margin-top: 18px" 
+                        onclick="location.href = 'http://localhost:8080/CarShopWebApplication/search.jsp';" 
+                        type="button"
+                        >Choose Another Car
+                </button>  
                 <hr style="margin-bottom: 35px">
                 <div style="display: inline-block; float: left; width: 75%;">
                     <img src="<%= model.getImage()%>" alt="" height="100%" width="90%"> 
-                    <label style="display: block; float: bottom; border-top: solid 1px black">PRICE: $<%= Math.round(order.getPrice())%></label>
+                    <label 
+                        style="display: block; float: bottom; border-top: solid 1px black">
+                        PRICE: $<%= Math.round(order.getPrice())%>
+                    </label>
                 </div>
                 <div style="display: inline-block; width: 23%; margin-left: 2%">
                     <h2 style="margin-top: 0; border-bottom: solid 1px black"><%= brand.getName() %></h2>

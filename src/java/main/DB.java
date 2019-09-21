@@ -30,7 +30,7 @@ public class DB {
             if (factory == null) {
                 Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
                 cfg.setProperty("hibernate.current_session_context_class", "thread");
-                cfg.setProperty("hibernate.connection.characterEncoding", "utf8"); //Omogucava dodavanje ĆĐŠČŽ
+                cfg.setProperty("hibernate.connection.characterEncoding", "utf8");
                 cfg.setProperty("hibernate.enable_lazy_load_no_trans","true");
                 StandardServiceRegistryBuilder sb = new StandardServiceRegistryBuilder();
                 sb.applySettings(cfg.getProperties());
@@ -42,13 +42,6 @@ public class DB {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-    }
-
-    public static void close() {
-        if (factory != null) {
-            StandardServiceRegistryBuilder.destroy(serviceRegistry);
-        }
-
     }
 
     public static List query(String query, Object ... params) {
@@ -93,21 +86,6 @@ public class DB {
             Session session = getSession();
             tx = session.beginTransaction();
             getSession().update(obj);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            throw e;
-        }
-    }
-
-    public static void delete(Object obj) {
-        Transaction tx = null;
-        try {
-            Session session = getSession();
-            tx = session.beginTransaction();
-            getSession().delete(obj);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
